@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+// Structure to represent an airplane
+typedef struct {
+    int altitude; // Altitude in feet
+    int speed;    // Speed in knots
+    char callsign[10]; // Aircraft callsign
+} Airplane;
+
+// Function to generate random airplane data
+Airplane generateAirplane() {
+    Airplane plane;
+    // Generate random altitude between 1000 and 40000 feet
+    plane.altitude = rand() % (40000 - 1000 + 1) + 1000;
+    // Generate random speed between 100 and 600 knots
+    plane.speed = rand() % (600 - 100 + 1) + 100;
+    // Generate random callsign
+    sprintf(plane.callsign, "AB%d%d%d", rand() % 10, rand() % 10, rand() % 10);
+    return plane;
+}
+
+int main() {
+    srand(time(NULL)); // Initialize random seed
+
+    // Simulate airplane detection
+    for (int i = 1; i <= 10; i++) {
+        Airplane airplane = generateAirplane();
+        printf("Airplane %d:\n", i);
+        printf("Callsign: %s\n", airplane.callsign);
+        printf("Altitude: %d feet\n", airplane.altitude);
+        printf("Speed: %d knots\n", airplane.speed);
+        printf("\n");
+    }
+
+    return 0;
+}
